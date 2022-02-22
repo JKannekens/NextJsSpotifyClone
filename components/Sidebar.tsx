@@ -1,42 +1,53 @@
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 import {
+  CogIcon,
   HeartIcon,
   HomeIcon,
   LibraryIcon,
   PlusCircleIcon,
   RssIcon,
   SearchIcon,
-} from '@heroicons/react/outline';
+} from "@heroicons/react/outline";
+import { signOut, useSession } from "next-auth/react";
 
 const Sidebar: NextPage = () => {
+  const { data: session, status } = useSession();
+
   return (
     <>
-      <div className="text-gray-500 p-5 text-sm border-r border-gray-900">
+      <div className="border-r border-gray-900 p-5 text-sm text-gray-500">
         <div className="space-y-4">
+          <button
+            className="flex items-center space-x-2 hover:text-white"
+            onClick={() => signOut()}
+          >
+            <CogIcon className="h-5 w-5" />
+            <p>Logout</p>
+          </button>
           <button className="flex items-center space-x-2 hover:text-white">
-            <HomeIcon className="w-5 h-5" />
+            <HomeIcon className="h-5 w-5" />
             <p>Home</p>
           </button>
           <button className="flex items-center space-x-2 hover:text-white">
-            <SearchIcon className="w-5 h-5" />
+            <SearchIcon className="h-5 w-5" />
             <p>Search</p>
           </button>
           <button className="flex items-center space-x-2 hover:text-white">
-            <LibraryIcon className="w-5 h-5" />
+            <LibraryIcon className="h-5 w-5" />
             <p>Your Library</p>
           </button>
           <hr className="border-t-[0.1px] border-gray-900" />
 
           <button className="flex items-center space-x-2 hover:text-white">
-            <PlusCircleIcon className="w-5 h-5" />
+            <PlusCircleIcon className="h-5 w-5" />
             <p>Create Playlist</p>
           </button>
           <button className="flex items-center space-x-2 hover:text-white">
-            <HeartIcon className="w-5 h-5" />
+            <HeartIcon className="h-5 w-5" />
             <p>Liked Songs</p>
           </button>
           <button className="flex items-center space-x-2 hover:text-white">
-            <RssIcon className="w-5 h-5" />
+            <RssIcon className="h-5 w-5" />
             <p>Your episodes</p>
           </button>
           <hr className="border-t-[0.1px] border-gray-900" />
